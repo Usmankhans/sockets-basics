@@ -1,4 +1,4 @@
-var PORT = process.env.PORT || 3000;
+  var PORT = process.env.PORT || 3000;
 var express = require ('express');
 var app = express();
 var http = require ('http').Server(app);
@@ -9,7 +9,7 @@ io.on('connection', function(socket){
 	console.log('User connected via socket.io');
 socket.on('message',function(message){
 	console.log('Message recieved: ' + message.text);
-	socket.broadcast.emit('message', message);
+	io.emit('message', message);
 });
 
 	socket.emit('message',{
@@ -20,3 +20,4 @@ socket.on('message',function(message){
 http.listen(PORT, function(){
 	console.log('Server Started!');
 });
+
